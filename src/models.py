@@ -97,26 +97,15 @@ class Vehicles(Base):
     __v = Column(Integer)
 
 
-class Favorites(Base):
-    __tablename__ = 'favorites'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    favorites_planets = Column(String(250), ForeignKey('favorites_planets.id'))
-    favorites_characters = Column(String(250), ForeignKey('favorites_characters.id'))
-    favorites_vehicles = Column(String(250), ForeignKey('favorites_vehicles.id'))
-    favorites = relationship(User)
-
 class Favorites_Planets(Base):
     __tablename__ = 'favorites_planets'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('favorites.user_id'))
+    user_id = Column(Integer, ForeignKey('user.id'))
     planet_id = Column(Integer, ForeignKey('planets.id'))
     favorites_planets = Column(String(250), ForeignKey('favorites_planets.id'))
-    favorites_planets = relationship(Favorites)
+    favorites_planets = relationship(User)
     favorites_planets = relationship(Planets)
 
 class Favorites_Characters(Base):
@@ -124,10 +113,10 @@ class Favorites_Characters(Base):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('favorites.user_id'))
+    user_id = Column(Integer, ForeignKey('user.id'))
     character_id = Column(Integer, ForeignKey('characters.id'))
     favorites_characters = Column(String(250), ForeignKey('favorites_characters.id'))
-    favorites_characters = relationship(Favorites)
+    favorites_characters = relationship(User)
     favorites_characters = relationship(Characters)
 
 class Favorites_Vehicles(Base):
@@ -135,10 +124,10 @@ class Favorites_Vehicles(Base):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('favorites.user_id'))
+    user_id = Column(Integer, ForeignKey('user.id'))
     vehicles_id = Column(Integer, ForeignKey('vehicles.id'))
     favorites_vehicles = Column(String(250), ForeignKey('favorites_vehicles.id'))
-    favorites_vehicles = relationship(Favorites)
+    favorites_vehicles = relationship(User)
     favorites_vehicles = relationship(Vehicles)
 
 ## Draw from SQLAlchemy base
